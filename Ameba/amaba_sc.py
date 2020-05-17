@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup
 
 def amaba(csvload,page,group,word):
     screan_w(page, group, csvload)
-    print("{} test".format(screan_w(page, group, csvload)))
     screan_r(csvload, word)
 
 def screan_w(i, top_page,csvload):
@@ -18,7 +17,7 @@ def screan_w(i, top_page,csvload):
     time = 0
     for page in range(i):
         count = 0
-        page_url = "{}/page-{}.html".format(top_page, page+1)
+        page_url = "{}page-{}.html".format(top_page, page+1)
         res = requests.get(page_url)
         soup = BeautifulSoup(res.text, features="html.parser")
         img_tags = soup.find_all("img", src=re.compile(
@@ -53,6 +52,7 @@ def screan_r(csvload, word):
     for img_url in img_data:
         r = requests.get(img_url)
         file_name = "{}-{}".format(title[i],daycount[i])
+        file_name=file_name.translate(str.maketrans({"/":"","*":"",":":"","?":"","<":"",">":"","｜":"","￥":""}))
         with open('{}/{}.jpg'.format(csvload, file_name), 'wb') as file:
            file.write(r.content)
         i += 1

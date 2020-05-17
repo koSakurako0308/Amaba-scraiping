@@ -90,10 +90,10 @@ class MyFrame1 ( wx.Frame ):
 
 	def go( self, event ):
 		group = self.m_textCtrl1.GetValue()
-		pagecount = self.m_spinCtrl1.GetValue()
+		page = self.m_spinCtrl1.GetValue()
 		word = self.m_textCtrl3.GetValue()
-		imgfile_url = self.m_dirPicker1.GetPath()
-		amaba(imgfile_url,pagecount,group,word)
+		csvload = self.m_dirPicker1.GetPath()
+		amaba(csvload,page,group,word)
 		wx.MessageBox(u'終了しました', u'タイトル', wx.OK)
 		event.Skip()
 
